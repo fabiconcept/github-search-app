@@ -1,0 +1,1 @@
+export enum Categories {ALL, REPO, USER, CODE, COMMENTS, TOPICS, WIKIS};
