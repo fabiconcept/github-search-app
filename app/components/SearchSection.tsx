@@ -24,11 +24,13 @@ export default function SearchSection() {
 
     return (
         <SearchContext.Provider value={contectData}>
-            <section className="flex items-center border-y dark:border-white/10 border-black/10 group focus-within:border-black dark:focus-within:border-white text-sm">
-                <DropDown />
-                <SearchElement />
-            </section>
-            <CategoriesSection />
+            <div className="sticky top-0 bg-body z-50">
+                <section className="flex items-center border-y dark:border-white/10 border-black/10 group focus-within:border-black dark:focus-within:border-white text-sm">
+                    <DropDown />
+                    <SearchElement />
+                </section>
+                <CategoriesSection />
+            </div>
         </SearchContext.Provider>
     )
 }
