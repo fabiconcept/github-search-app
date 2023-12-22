@@ -1,19 +1,13 @@
 "use client"
+// import { initiateRepositories, initiateUsers } from "@/redux-store/slices";
+import { useDispatch } from "react-redux";
 
-import { getRepositories } from "@/lib/TestOctokit";
-import { useEffect } from "react";
 export default function Test() {
-    useEffect(() => {
-        async function logOut() {
-            const response = await getRepositories({ q: "fabiconcept" });
-             console.log(response)
-        }
-
-        logOut();
-
-    }, []);
+    const dispatch = useDispatch();
 
     return (
-        <div></div>
+        <div>
+            <button type="button" title="click here" /*onClick={()=>dispatch(getUsersThunk({q: "fabiconcept"}))}*/>Click</button>
+        </div>
     );
 }

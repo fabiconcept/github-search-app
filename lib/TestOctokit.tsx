@@ -1,17 +1,12 @@
 import { Octokit } from "octokit";
 import { Repository, SearchResponse, Topic, User } from "./Interfaces";
+import { Params } from "./types";
 
 const authToken: string = process.env.NEXT_PUBLIC_GIT_AUTH_TOKEN!
 
 const octokit = new Octokit({
     auth: `${authToken}`
 });
-
-
-type Params = {
-    q: string;
-    currentPage?: number;
-}
 
 export const getUsers = async (params:Params):Promise<SearchResponse<User>> => {
     const response = await octokit.request("GET /search/users", {

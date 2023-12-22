@@ -10,7 +10,7 @@ export default function TopSection() {
                     alt="github logo"
                     height={50}
                     width={50}
-                    className="h-10 select-none pointer-events-none dark:invert-[1] opacity-70"
+                    className="h-10 w-auto object-contain select-none pointer-events-none dark:invert-[1] opacity-70"
                 />
                 <h2 className="text-4xl font-semibold text-green-500">GitHub Explorer</h2>
             </div>
