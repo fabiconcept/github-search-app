@@ -14,7 +14,7 @@ export default function Test() {
     }, [UsersResults.loading]);
 
     useEffect(() => {
-        dispatch(fetchUsers({q: "fabiconcept"}));
+        dispatch(fetchUsers({q: "fabico"}));
     }, [dispatch]);
 
     return (

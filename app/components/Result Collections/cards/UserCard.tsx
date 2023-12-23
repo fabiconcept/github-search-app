@@ -2,6 +2,16 @@ import Image from "next/image";
 import { FaBook, FaUsers } from "react-icons/fa";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
+interface UserCardParams {
+    avatar_img: string;
+    id: number; 
+    login: string;
+    url: string;
+    followers_url: string;
+    site_admin: boolean;
+    repos_url: string;
+}
+
 export default function UserCard() {
     return (
         <div className="p-2 min-w-[15rem] flex-1 sm:max-w-[15rem] max-w-[20rem] bg-black/20 shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:scale-105 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs">
@@ -20,14 +30,10 @@ export default function UserCard() {
             <div className="mx-3 py-3 flex items-center justify-between border-b border-white/10">
                 <span className="flex gap-1">
                     <span className="text-green-500 font-semibold">@Hello</span>
-                    <span className="opacity-50">World</span>
                 </span>
                 <div className="cursor-pointer" title="Open in GitHub">
                     <FaArrowUpRightFromSquare />
                 </div>
-            </div>
-            <div className="mx-3 py-5 flex items-center text-center justify-center last:border-none border-b border-white/10">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, mollitia!
             </div>
             <div className="mx-3 py-3 flex items-center text-center justify-between last:border-none border-b border-white/10 opacity-50  text-[0.65rem]">
                 <span>Shangai, China</span>

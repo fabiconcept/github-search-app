@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { SearchResultRepositoriesSlice, SearchResultTopicsSlice, SearchResultUsersSlice } from "./slices";
+import { CategoryStateSlice, SearchResultRepositoriesSlice, SearchResultTopicsSlice, SearchResultUsersSlice } from "./slices";
 
 const store = configureStore({
     reducer: {
         UsersResults: SearchResultUsersSlice,
         TopicsResults: SearchResultTopicsSlice,
-        RepositoriesResults: SearchResultRepositoriesSlice
+        RepositoriesResults: SearchResultRepositoriesSlice,
+        Category: CategoryStateSlice,
     }
 });
 

@@ -1,9 +1,12 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DropDown from "./sub components/DropDown";
 import SearchElement from "./sub components/SearchElement";
 import { Categories } from "@/lib/enums";
 import CategoriesSection from "./sub components/CategoriesSection";
+import { updateCategory } from "@/redux-store/slices";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux-store";
 
 
 
@@ -18,8 +21,15 @@ type SearchContextType = {
 
 export const SearchContext = React.createContext<SearchContextType | undefined>(undefined);
 export default function SearchSection() {
+    const dispatch= useDispatch<AppDispatch>();
+
     const [openDropDown, setOpenDropDown] = useState<boolean>(false);
     const [category, setCategory] = useState<CategoriesState>("ALL");
+
+    useEffect(() => {
+        dispatch(updateCategory(category));
+    }, [category, dispatch]);
+    
     const contectData: SearchContextType = { category, setCategory, setOpenDropDown, openDropDown }
 
     return (

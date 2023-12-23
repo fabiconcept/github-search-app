@@ -1,13 +1,21 @@
 import { Repository, SearchResponse, Topic, User } from "@/lib/Interfaces";
-import { Params } from "@/lib/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"; 
 import { fetchRepositories, fetchTopics, fetchUsers } from "../thunk";
+import { Categories } from "@/lib/enums";
 
 type loadingState = 'idle' | 'pending' | 'succeeded' | 'failed';
 type initial<T> = {
     loading: loadingState;
     hasError: boolean;
     response: SearchResponse<T> | null
+}
+
+type CategoryTemplate = keyof typeof Categories;
+type CategoriesState = {
+    value: CategoryTemplate
+};
+const CategoryInitialState: CategoriesState = {
+    value: "ALL"
 }
 
 const initialStateUsers:initial<User> = {
@@ -103,10 +111,22 @@ const SearchResultTopics = createSlice({
     },
 });
 
+const CategoryState = createSlice({
+    name: "category",
+    initialState: CategoryInitialState,
+    reducers: {
+        updateCategory: (state, action:PayloadAction<CategoryTemplate>) =>{
+            state.value = action.payload;
+        }
+    }
+})
+
 export const { clearUsers } = SearchResultUsers.actions
 export const { clearRepo } = SearchResultRepositories.actions
 export const { clearTopics } = SearchResultTopics.actions
+export const { updateCategory } = CategoryState.actions;
 
 export const SearchResultRepositoriesSlice = SearchResultRepositories.reducer
 export const SearchResultUsersSlice = SearchResultUsers.reducer
 export const SearchResultTopicsSlice = SearchResultTopics.reducer
+export const CategoryStateSlice = CategoryState.reducer
