@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import UserCard from "./cards/UserCard";
 import { AppDispatch, RootState } from "@/redux-store";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { User } from "@/lib/Interfaces";
 import Image from "next/image";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
@@ -19,16 +19,15 @@ export default function UserCollection() {
         return Math.ceil(val / 15);
     }
 
-    const canChangeCurrentPage = useMemo(()=>{
-        if(!UsersResults.response) return false;
-        if(!UsersResults.response.total_count) return false;
-        return displayUsers.length > 0 && UsersResults.response.total_count > 15
-    },[displayUsers.length, UsersResults.response]);
+    const isFirstRender = useRef(true);
 
     useEffect(() => {
-        if(!canChangeCurrentPage) return;
+        if(isFirstRender){
+            isFirstRender.current = false;
+            return;
+        } 
         dispatch(fetchUsers({q: searchQuery.q, currentPage}));
-    }, [currentPage, dispatch, searchQuery.q, canChangeCurrentPage]);
+    }, [currentPage, dispatch, searchQuery.q]);
 
     useEffect(() => {
         if (UsersResults.response === null) return;

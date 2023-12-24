@@ -2,7 +2,7 @@
 import { AppDispatch, RootState } from "@/redux-store";
 import TopicCard from "./cards/TopicCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Topic } from "@/lib/Interfaces";
 import { fetchTopics } from "@/redux-store/thunk";
 import { FaEllipsisH } from "react-icons/fa";
@@ -19,16 +19,15 @@ export default function TopicCollection() {
         return Math.ceil(val / 15);
     }
 
-    const canChangeCurrentPage = useMemo(() => {
-        if (!TopicsResults.response) return false;
-        if (!TopicsResults.response.total_count) return false;
-        return displayTopic.length > 0 && TopicsResults.response.total_count > 15
-    }, [displayTopic.length, TopicsResults.response]);
+    const isFirstRender = useRef(true);
 
     useEffect(() => {
-        if (!canChangeCurrentPage) return;
+        if(isFirstRender){
+            isFirstRender.current = false;
+            return;
+        } 
         dispatch(fetchTopics({ q: searchQuery.q, currentPage }));
-    }, [currentPage, dispatch, searchQuery.q, canChangeCurrentPage]);
+    }, [currentPage, dispatch, searchQuery.q]);
 
     useEffect(() => {
         if (TopicsResults.response === null) return;

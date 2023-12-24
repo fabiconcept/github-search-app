@@ -2,7 +2,7 @@
 import { AppDispatch, RootState } from "@/redux-store";
 import RepoCard from "./cards/RepoCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Repository } from "@/lib/Interfaces";
 import { fetchRepositories } from "@/redux-store/thunk";
 import { FaEllipsisH } from "react-icons/fa";
@@ -20,16 +20,15 @@ export default function RepoCollection() {
         return Math.ceil(val / 15);
     }
 
-    const canChangeCurrentPage = useMemo(()=>{
-        if(!RepositoriesResults.response) return false;
-        if(!RepositoriesResults.response.total_count) return false;
-        return displayRepo.length > 0 && RepositoriesResults.response.total_count > 15
-    },[displayRepo.length, RepositoriesResults.response]);
+    const isFirstRender = useRef(true);
 
     useEffect(() => {
-        if(!canChangeCurrentPage) return;
+        if(isFirstRender){
+            isFirstRender.current = false;
+            return;
+        } 
         dispatch(fetchRepositories({q: searchQuery.q, currentPage}));
-    }, [currentPage, dispatch, searchQuery.q, canChangeCurrentPage]);
+    }, [currentPage, dispatch, searchQuery.q]);
 
     useEffect(() => {
         if (RepositoriesResults.response === null) return;
