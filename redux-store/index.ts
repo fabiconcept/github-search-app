@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { CategoryStateSlice, SearchResultRepositoriesSlice, SearchResultTopicsSlice, SearchResultUsersSlice } from "./slices";
+import { CategoryStateSlice, SearchResultRepositoriesSlice, SearchResultTopicsSlice, SearchResultUsersSlice, searchQueryTextSlice } from "./slices";
 
 const store = configureStore({
     reducer: {
@@ -7,6 +7,7 @@ const store = configureStore({
         TopicsResults: SearchResultTopicsSlice,
         RepositoriesResults: SearchResultRepositoriesSlice,
         Category: CategoryStateSlice,
+        searchQuery: searchQueryTextSlice,
     }
 });
 

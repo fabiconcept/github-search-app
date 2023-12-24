@@ -13,7 +13,7 @@ export const getUsers = async (params:Params):Promise<SearchResponse<User>> => {
         q: params.q,
         sort: "joined",
         page: params.currentPage,
-        per_page: 10
+        per_page: 15
     });
 
     return response.data
@@ -24,7 +24,7 @@ export const getRepositories = async (params:Params):Promise<SearchResponse<Repo
         q: params.q,
         sort: "updated",
         page: params.currentPage,
-        per_page: 10
+        per_page: 15
     });
 
     return response.data
@@ -35,7 +35,7 @@ export const getTopics = async (params:Params):Promise<SearchResponse<Topic>> =>
         q: params.q,
         sort: "updated",
         page: params.currentPage,
-        per_page: 10
+        per_page: 15
     });
 
     return response.data

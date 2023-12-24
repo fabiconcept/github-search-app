@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux-store";
 import { fetchRepositories, fetchTopics, fetchUsers } from "@/redux-store/thunk";
+import { setSearchQuery } from "@/redux-store/slices";
 
 export default function SearchElement() {
     const contextData = useContext(SearchContext);
@@ -30,7 +31,7 @@ export default function SearchElement() {
                 dispatch(fetchRepositories({q: searchQuery}));
                 dispatch(fetchTopics({q: searchQuery}));
         }
-        setQearchQuery("");
+        dispatch(setSearchQuery(searchQuery));
     }
 
     return (

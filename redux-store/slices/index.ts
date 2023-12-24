@@ -119,14 +119,28 @@ const CategoryState = createSlice({
             state.value = action.payload;
         }
     }
-})
+});
+
+const searchQueryText = createSlice({
+    name:"searchText",
+    initialState: {
+        q: "",
+    },
+    reducers: {
+        setSearchQuery: (state, action:PayloadAction<string>) => {
+            state.q = action.payload;
+        }
+    }
+});
 
 export const { clearUsers } = SearchResultUsers.actions
 export const { clearRepo } = SearchResultRepositories.actions
 export const { clearTopics } = SearchResultTopics.actions
 export const { updateCategory } = CategoryState.actions;
+export const { setSearchQuery } = searchQueryText.actions;
 
 export const SearchResultRepositoriesSlice = SearchResultRepositories.reducer
 export const SearchResultUsersSlice = SearchResultUsers.reducer
 export const SearchResultTopicsSlice = SearchResultTopics.reducer
 export const CategoryStateSlice = CategoryState.reducer
+export const searchQueryTextSlice = searchQueryText.reducer
