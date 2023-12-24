@@ -1,4 +1,4 @@
-import { formatLastUpdated, formatNumber } from "@/lib/helper";
+import { formatLastUpdated, formatNumber, getLanguageColor } from "@/lib/helper";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 
@@ -27,10 +27,10 @@ export default function RepoCard(params:RepositoryCard) {
                 <span className="font-semibold text-green-500">{params.full_name}</span>
                 <span className="w-[80%] truncate">{params.description}</span>
                 <div className="flex items-center gap-8 text-[0.65rem] dark:text-white/50 text-black/50">
-                    <div className="flex items-center gap-1 relative after:absolute after:h-[4px] after:w-[4px] dark:after:bg-white/30 after:bg-black/30 after:right-[-1.15rem] after:rounded-full">
-                        <div className="h-2 w-2 rounded-full bg-purple-600"></div>
+                    {params.language && <div className="flex items-center gap-1 relative after:absolute after:h-[4px] after:w-[4px] dark:after:bg-white/30 after:bg-black/30 after:right-[-1.15rem] after:rounded-full">
+                        <div className="h-2 w-2 rounded-full" style={{backgroundColor:  `${getLanguageColor(params.language)}`}}></div>
                         <span>{params.language}</span>
-                    </div>
+                    </div>}
                     <div className="flex items-center gap-1  relative after:absolute after:h-[4px] after:w-[4px] dark:after:bg-white/30 after:bg-black/30 after:right-[-1.15rem] after:rounded-full">
                         <FaStar />
                         <span>{formatNumber(params.stargazers_count)}</span>

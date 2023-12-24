@@ -12,7 +12,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 export default function TopicCollection() {
     const dispatch = useDispatch<AppDispatch>();
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const { TopicsResults, searchQuery } = useSelector((state: RootState) => state);
+    const { TopicsResults, searchQuery, Category } = useSelector((state: RootState) => state);
     const [displayTopic, setDisplayTopics] = useState<Topic[]>([]);
 
     const getPages = (val: number): number => {
@@ -180,7 +180,8 @@ export default function TopicCollection() {
     };
     return (
         <div className="w-full relative">
-            {TopicsResults.loading === "pending" && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
+            {!!(displayTopic.length > 0) && <div className="mb-4 text-xl opacity-70">Topics results</div>}
+            {TopicsResults.loading === "pending" && Category.value ==="TOPICS" && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
                 <div role="status">
                     <svg aria-hidden="true" className="w-12 h-1w-12 text-gray-200 animate-spin dark:text-gray-500 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
@@ -201,7 +202,7 @@ export default function TopicCollection() {
                 ))}
             </div>}
 
-            {!(displayTopic.length > 0) && <div className="grid place-items-center p-8 gap-4 opacity-70 h-[20rem]object">
+            {!(displayTopic.length > 0) && Category.value ==="TOPICS" && <div className="grid place-items-center p-8 gap-4 opacity-70 h-[20rem]object">
                 <Image
                     src={"https://github-lobby.sirv.com/notfound03.svg"}
                     alt="Not Found"
@@ -212,7 +213,7 @@ export default function TopicCollection() {
                 <span>No Topic found</span>
             </div>}
 
-            {!!(displayTopic.length > 0) && TopicsResults.response && TopicsResults.response.total_count > 10 && <div className="flex items-center justify-center gap-1 mt-6 text-xs">
+            {!!(displayTopic.length > 0) && TopicsResults.response && TopicsResults.response.total_count > 15 && <div className="flex items-center justify-center gap-1 mt-6 text-xs">
                 <div className={`flex gap-1 items-center px-4 cursor-default ${currentPage === 1 ? "opacity-40" : "text-green-500 cursor-pointer active:scale-90 select-none"}`} onClick={prevHandler}>
                     <FaAngleLeft/>
                     Previous
