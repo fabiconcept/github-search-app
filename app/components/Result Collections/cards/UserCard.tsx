@@ -15,7 +15,7 @@ interface UserCardParams {
 
 export default function UserCard(params:UserCardParams) {
     return (
-        <div className="p-2 min-w-[15rem] flex-1 sm:max-w-[15rem] max-w-[20rem] bg-black/20 shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:scale-105 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs">
+        <div className="p-2 min-w-[15rem] flex-1 sm:max-w-[15rem] max-w-[20rem] bg-black/20 shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:bg-black/5 dark:hover:bg-white/5 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs">
             <div className="overflow-hidden rounded-lg w-full aspect-auto grid place-items-center relative">
                 <Image
                     src={params.avatar_img}

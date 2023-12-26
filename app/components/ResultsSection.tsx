@@ -27,7 +27,7 @@ export default function ResultsSection() {
             {!isIdle && !NoResult && (Category.value === "ALL" || Category.value === "USERS") && <UserCollection />}
             {!isIdle && !NoResult && (Category.value === "ALL" || Category.value === "REPOSITORIES") &&<RepoCollection />}
             {!isIdle && !NoResult && (Category.value === "ALL" || Category.value === "TOPICS") &&<TopicCollection />}
-            {isIdle && <div className="h-[30rem] grid place-items-center">
+            {isIdle && <div className="h-[30rem] grid place-items-center pointer-events-none select-none opacity-70">
                 <Image
                     src={"https://github-lobby.sirv.com/welcome.svg"}
                     alt="Welcome svg"
@@ -37,7 +37,7 @@ export default function ResultsSection() {
                 />
                 <span>Welcome</span>
             </div>}
-            {NoResult && <div className="h-[30rem] grid place-items-center">
+            {NoResult && <div className="h-[30rem] grid place-items-center pointer-events-none select-none opacity-70">
                 <Image
                     src={"https://github-lobby.sirv.com/noresult.svg"}
                     alt="Welcome svg"
@@ -47,7 +47,7 @@ export default function ResultsSection() {
                 />
                 <span>No Results</span>
             </div>}
-            {isFailed && <div className="h-[30rem] grid place-items-center">
+            {isFailed && <div className="h-[30rem] grid place-items-center pointer-events-none select-none opacity-70">
                 <Image
                     src={"https://github-lobby.sirv.com/error.svg"}
                     alt="Welcome svg"
