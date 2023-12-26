@@ -1,56 +1,78 @@
 "use client"
-import { AppDispatch, } from "@/redux-store";
-import TopicCard from "./cards/TopicCard";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useEffect, useRef, useState } from "react";
-import { Topic } from "@/lib/Interfaces";
-import { fetchTopics } from "@/redux-store/thunk";
+import { Repository } from "@/lib/Interfaces";
 import { FaEllipsisH } from "react-icons/fa";
 import Image from "next/image";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { getCategory, getSearchQuery, getTopicsResults } from "@/redux-store/slices";
+import RepoCard from "@/app/components/Result Collections/cards/RepoCard";
+import { useCustomFetch } from "@/lib/hooks";
 
-export default function TopicCollection() {
-    const dispatch = useDispatch<AppDispatch>();
+type SortOption = 'stars' | 'date';
+
+export default function RepoCollection({ url, login }: {url:string, login:string}) {
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const Category = useSelector(getCategory);
-    const TopicsResults = useSelector(getTopicsResults);
-    const searchQuery = useSelector(getSearchQuery);
-    const [displayTopic, setDisplayTopics] = useState<Topic[]>([]);
+    const [RepositoriesResultsCount, RepositoriesResults, loading] = useCustomFetch<Repository>(url);
+    const [displayRepo, setDisplayRepo] = useState<Repository[]>([]);
+    const [ChunkRepo, setChunkRepo] = useState<Repository[][]>([]);
 
-    const getPages = (val: number): number => {
-        return Math.ceil(val / 15);
+    function chunkArray(array: Repository[], chunkSize: number) {
+        const result = [];
+        for (let i = 0; i < array.length; i += chunkSize) {
+            result.push(array.slice(i, i + chunkSize));
+        }
+        return result;
     }
 
+
+    function sortRepositories(repositories: Repository[], sortBy: SortOption): Repository[] {
+        return repositories.sort((a, b) => {
+            if (sortBy === 'stars') {
+                return b.stargazers_count - a.stargazers_count; // Sort by number of stars
+            } else if (sortBy === 'date') {
+                const dateA = new Date(a.updated_at).getTime();
+                const dateB = new Date(b.updated_at).getTime();
+                return dateB - dateA; // Sort by date updated
+            }
+            return 0;
+        });
+    }
     const isFirstRender = useRef(true);
 
     useEffect(() => {
-        if(isFirstRender.current){
+        if (isFirstRender.current) {
             return;
-        } 
-        dispatch(fetchTopics({ q: searchQuery, currentPage }));
-    }, [currentPage, dispatch, searchQuery]);
+        }
+        setDisplayRepo(ChunkRepo[currentPage-1]);
+    }, [currentPage, ChunkRepo]);
 
     useEffect(() => {
         isFirstRender.current = true;
-        if (TopicsResults.response === null) return;
+        if (RepositoriesResults.length === 0) return;
         isFirstRender.current = false;
-        setDisplayTopics(TopicsResults.response?.items);
-    }, [TopicsResults.response]);
+        const sorted = sortRepositories(RepositoriesResults, "date")
+        setChunkRepo(chunkArray(sorted, 10));
+    }, [RepositoriesResults]);
 
     const prevHandler = () => {
-        if (currentPage === 1) return;
+        if (currentPage === 1) {
+            setCurrentPage(ChunkRepo.length);
+            return;
+        }
         setCurrentPage(currentPage - 1);
     }
 
     const nextHandler = () => {
-        if (!TopicsResults?.response) return;
-        if (currentPage === getPages(TopicsResults?.response?.total_count)) return;
+        if (!RepositoriesResults) return;
+        if (currentPage === ChunkRepo.length){
+            setCurrentPage(1);
+             return;
+        }
         setCurrentPage(currentPage + 1);
     }
 
     const renderPagination = () => {
-        const totalPages = getPages(TopicsResults?.response?.total_count || 0);
+        const totalPages = ChunkRepo.length;
 
         const handlePageClick = (page: number) => {
             if (page === currentPage) return;
@@ -181,10 +203,12 @@ export default function TopicCollection() {
             ));
         }
     };
+
+
     return (
-        <div className="w-full relative">
-            {!!(displayTopic.length > 0) && <div className="mb-4 text-xl opacity-70">Topics results</div>}
-            {TopicsResults.loading === "pending" && !!(displayTopic.length > 0) &&  <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
+        <div className="w-full relative h-full overflow-y-auto no-scroll">
+            {!!(displayRepo.length > 0) && <div className="mb-4 text-xl opacity-70">{login}&apos;s Repositories</div>}
+            {loading === "pending" && !!(displayRepo.length > 0) && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
                 <div role="status">
                     <svg aria-hidden="true" className="w-12 h-1w-12 text-gray-200 animate-spin dark:text-gray-500 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
@@ -194,18 +218,21 @@ export default function TopicCollection() {
                 </div>
             </div>}
 
-            {!!(displayTopic.length > 0) && <div className=" grid sm:grid-cols-[repeat(auto-fill,minmax(25rem,1fr))] grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-[1rem] mx-auto place-items-center">
-                {displayTopic.map((topic) => (
-                    <TopicCard 
-                        key={topic.name}
-                        name={topic.name}
-                        short_description={topic.short_description || ""}
-                        updated_at={topic.updated_at}
+            {!!(displayRepo.length > 0) && <div className=" grid sm:grid-cols-[repeat(auto-fill,minmax(25rem,1fr))] grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-[1rem] mx-auto place-items-center">
+                {displayRepo.map((repo) => (
+                    <RepoCard
+                        key={repo.node_id}
+                        avatar_url={repo.owner?.avatar_url || "https://github-lobby.sirv.com/cool.svg"}
+                        full_name={repo.full_name}
+                        language={repo.language || ""}
+                        stargazers_count={repo.stargazers_count}
+                        updated_at={repo.updated_at}
+                        description={repo.description}
                     />
                 ))}
             </div>}
 
-            {!(displayTopic.length > 0) && Category.value ==="TOPICS" && <div className="grid place-items-center p-8 gap-4 opacity-70 h-[20rem]object">
+            {!(displayRepo.length > 0) && <div className="grid place-items-center p-8 gap-4 opacity-70 h-full">
                 <Image
                     src={"https://github-lobby.sirv.com/notfound03.svg"}
                     alt="Not Found"
@@ -213,16 +240,16 @@ export default function TopicCollection() {
                     width={500}
                     className="obeject-contain max-w-[12rem] h-auto opacity-50"
                 />
-                <span>No Topic found</span>
+                <span>No repo found</span>
             </div>}
 
-            {!!(displayTopic.length > 0) && TopicsResults.response && TopicsResults.response.total_count > 15 && <div className="flex items-center justify-center gap-1 mt-6 text-xs">
+            {!!(displayRepo.length > 0) && RepositoriesResultsCount > 15 && <div className="flex items-center justify-center gap-1 mt-6 text-xs">
                 <div className={`flex gap-1 items-center px-4 cursor-default ${currentPage === 1 ? "opacity-40" : "text-green-500 cursor-pointer active:scale-90 select-none"}`} onClick={prevHandler}>
-                    <FaAngleLeft/>
+                    <FaAngleLeft />
                     Previous
                 </div>
                 {renderPagination()}
-                <div className={`flex gap-1 items-center px-4 cursor-default ${currentPage === getPages(TopicsResults.response.total_count) ? "opacity-40" : "text-green-500 cursor-pointer active:scale-90 select-none"}`} onClick={nextHandler}>
+                <div className={`flex gap-1 items-center px-4 cursor-default ${currentPage === ChunkRepo.length ? "opacity-40" : "text-green-500 cursor-pointer active:scale-90 select-none"}`} onClick={nextHandler}>
                     Next
                     <FaAngleRight />
                 </div>

@@ -2,8 +2,10 @@ import { Repository, SearchResponse, Topic, User } from "@/lib/Interfaces";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"; 
 import { fetchRepositories, fetchTopics, fetchUsers } from "../thunk";
 import { Categories } from "@/lib/enums";
+import { RootState } from ".."
+import { loadingState } from "@/lib/types";
 
-type loadingState = 'idle' | 'pending' | 'succeeded' | 'failed';
+
 type initial<T> = {
     loading: loadingState;
     hasError: boolean;
@@ -138,6 +140,12 @@ export const { clearRepo } = SearchResultRepositories.actions
 export const { clearTopics } = SearchResultTopics.actions
 export const { updateCategory } = CategoryState.actions;
 export const { setSearchQuery } = searchQueryText.actions;
+
+export const getCategory = (state: RootState) => state.Category;
+export const getSearchQuery = (state: RootState) => state.searchQuery.q;
+export const getUsersResults = (state: RootState) => state.UsersResults;
+export const getTopicsResults = (state: RootState) => state.TopicsResults;
+export const getRepositoriesResults = (state: RootState) => state.RepositoriesResults;
 
 export const SearchResultRepositoriesSlice = SearchResultRepositories.reducer
 export const SearchResultUsersSlice = SearchResultUsers.reducer

@@ -3,18 +3,22 @@ import { FaSearch } from "react-icons/fa";
 import { SearchContext } from "../SearchSection";
 import { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/redux-store";
+import { AppDispatch } from "@/redux-store";
 import { fetchRepositories, fetchTopics, fetchUsers } from "@/redux-store/thunk";
-import { setSearchQuery } from "@/redux-store/slices";
+import { getRepositoriesResults, getTopicsResults, getUsersResults, setSearchQuery } from "@/redux-store/slices";
 
 export default function SearchElement() {
     const contextData = useContext(SearchContext);
     const dispatch= useDispatch<AppDispatch>();
-    const { UsersResults, RepositoriesResults, TopicsResults } = useSelector((state: RootState) => state);
+    const TopicsResults = useSelector(getTopicsResults);
+    const RepositoriesResults = useSelector(getRepositoriesResults);
+    const UsersResults = useSelector(getUsersResults);
+
     const isLoading = UsersResults.loading === "pending" || RepositoriesResults.loading === "pending" || TopicsResults.loading === "pending";
     const [searchQuery, setQearchQuery] = useState<string>("");
 
     const performSearch = (): void => {
+        if(searchQuery.length === 0) return;
         if (isLoading) return;
         switch(contextData?.category){
             case "USERS":
@@ -43,8 +47,8 @@ export default function SearchElement() {
                 onChange={(e)=>setQearchQuery(e.target.value)}
                 value={searchQuery}
             />
-            <div className="border-l dark:border-white/10 border-black/10 grid place-items-center px-6 dark:hover:bg-white/10 hover:bg-black/10 cursor-pointer group-focus-within:border-black dark:group-focus-within:border-white group" onClick={performSearch}>
-                {!isLoading && <FaSearch className="peer-placeholder-shown:opacity-10 text-green-500 group-hover:scale-125 group-active:scale-90 group-active:rotate-[-45deg]" />}
+            <div className={`${searchQuery.length > 0 ? "dark:hover:bg-white/10 hover:bg-black/10 cursor-pointer group" : "pointer-events-none"} border-l dark:border-white/10 border-black/10 grid place-items-center px-6 group-focus-within:border-black dark:group-focus-within:border-white`} onClick={performSearch}>
+                {!isLoading && <FaSearch className={`${searchQuery.length > 0 ? "peer-placeholder-shown:opacity-10 text-green-500 group-hover:scale-125 group-active:scale-90 group-active:rotate-[-45deg]" : "opacity-10 text-green-200"}`} />}
                 {isLoading && <div role="status">
                     <svg aria-hidden="true" className="w-7 h-7 text-gray-200 animate-spin dark:text-gray-500 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />

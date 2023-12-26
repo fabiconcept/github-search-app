@@ -1,6 +1,7 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
-import { FaBook, FaUsers } from "react-icons/fa";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 interface UserCardParams {
@@ -8,9 +9,7 @@ interface UserCardParams {
     id: number; 
     login: string;
     url: string;
-    followers_url: string;
     site_admin: boolean;
-    repos_url: string;
     type: string
 }
 
@@ -20,29 +19,26 @@ export default function UserCard(params:UserCardParams) {
             <div className="overflow-hidden rounded-lg w-full aspect-auto grid place-items-center relative">
                 <Image
                     src={params.avatar_img}
-                    alt="user"
+                    alt={`${params.login} photo`}
                     height={250}
                     width={250}
                     className="w-full sm:h-[10rem] object-cover"
+                    priority
                 />
                 <div className="absolute top-0 h-full w-full bg-gradient-to-t from-[rgb(15,15,15)] via-transparent">
 
                 </div>
             </div>
             <div className="mx-3 py-3 flex items-center justify-between border-b border-white/10">
-                <span className="flex gap-1">
-                    <span className="text-green-500 font-semibold">@{params.site_admin ? "You" : params.login}</span>
+                <span className="flex gap-1 w-full">
+                    <span className="text-green-500 font-semibold max-w-[90%] truncate">@{params.site_admin ? "You" : params.login}</span>
                 </span>
-                <Link href={params.url} target="_blank" className="cursor-pointer hover:text-green-500 hover:scale-125" title="Open in GitHub">
+                <Link href={`/user/${params.login}`} className="cursor-pointer hover:text-green-500 hover:scale-125" title="Open in GitHub">
                     <FaArrowUpRightFromSquare />
                 </Link>
             </div>
-            <div className="mx-3 py-3 flex items-center text-center justify-between last:border-none border-b border-white/10 opacity-50  text-[0.65rem]">
+            <div className="mx-3 py-3 flex items-center text-center justify-center uppercase last:border-none border-b border-white/10 opacity-50  text-[0.65rem]">
                 <span>{params.type}</span>
-                <div className="flex items-center gap-2">
-                    <span className="flex items-center gap-1"><FaBook className="text-md" />  <span>310</span></span>
-                    <span className="flex items-center gap-1"><FaUsers className="text-md" /> <span>4K</span></span>
-                </div>
             </div>
         </div>
     )

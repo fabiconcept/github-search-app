@@ -1,18 +1,22 @@
 "use client"
 import { useDispatch, useSelector } from "react-redux";
 import UserCard from "./cards/UserCard";
-import { AppDispatch, RootState } from "@/redux-store";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { AppDispatch } from "@/redux-store";
+import { useEffect, useRef, useState } from "react";
 import { User } from "@/lib/Interfaces";
 import Image from "next/image";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { FaEllipsisH } from "react-icons/fa";
 import { fetchUsers } from "@/redux-store/thunk";
+import { getCategory, getSearchQuery, getUsersResults } from "@/redux-store/slices";
 
 export default function UserCollection() {
     const dispatch = useDispatch<AppDispatch>();
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const { Category, UsersResults, searchQuery } = useSelector((state: RootState) => state);
+    const Category = useSelector(getCategory);
+    const searchQuery = useSelector(getSearchQuery);
+    const UsersResults = useSelector(getUsersResults);
+    
     const [displayUsers, setDisplayUsers] = useState<User[]>([]);
 
     const getPages = (val: number): number => {
@@ -22,15 +26,16 @@ export default function UserCollection() {
     const isFirstRender = useRef(true);
 
     useEffect(() => {
-        if(isFirstRender){
-            isFirstRender.current = false;
+        if(isFirstRender.current){
             return;
         } 
-        dispatch(fetchUsers({q: searchQuery.q, currentPage}));
-    }, [currentPage, dispatch, searchQuery.q]);
+        dispatch(fetchUsers({q: searchQuery, currentPage}));
+    }, [currentPage, dispatch, searchQuery]);
 
     useEffect(() => {
+        isFirstRender.current = true;
         if (UsersResults.response === null) return;
+        isFirstRender.current = false;
         setDisplayUsers(UsersResults.response?.items);
     }, [UsersResults.response]);
 
@@ -182,7 +187,7 @@ export default function UserCollection() {
     return (
         <div className="w-full relative">
             {!!(displayUsers.length > 0) && <div className="mb-4 text-xl opacity-70">Users results</div>}
-            {UsersResults.loading === "pending" && Category.value ==="USERS" && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
+            {UsersResults.loading === "pending" && !!(displayUsers.length > 0) && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
                 <div role="status">
                     <svg aria-hidden="true" className="w-12 h-1w-12 text-gray-200 animate-spin dark:text-gray-500 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
@@ -195,8 +200,6 @@ export default function UserCollection() {
                 {displayUsers.map((user) => (<UserCard
                     id={user.id}
                     avatar_img={user.avatar_url}
-                    followers_url={user.followers_url}
-                    repos_url={user.repos_url}
                     login={user.login}
                     site_admin={user.site_admin}
                     url={user.html_url}

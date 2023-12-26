@@ -1,19 +1,21 @@
 "use client"
-import { AppDispatch, RootState } from "@/redux-store";
+import { AppDispatch } from "@/redux-store";
 import RepoCard from "./cards/RepoCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect,useRef, useState } from "react";
 import { Repository } from "@/lib/Interfaces";
 import { fetchRepositories } from "@/redux-store/thunk";
 import { FaEllipsisH } from "react-icons/fa";
 import Image from "next/image";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { DEV_MIDDLEWARE_MANIFEST } from "next/dist/shared/lib/constants";
+import { getCategory, getRepositoriesResults, getSearchQuery } from "@/redux-store/slices";
 
 export default function RepoCollection() {
     const dispatch = useDispatch<AppDispatch>();
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const { RepositoriesResults, searchQuery, Category } = useSelector((state: RootState) => state);
+    const Category = useSelector(getCategory);
+    const RepositoriesResults = useSelector(getRepositoriesResults);
+    const searchQuery = useSelector(getSearchQuery);
     const [displayRepo, setDisplayRepo] = useState<Repository[]>([]);
 
     const getPages = (val: number): number => {
@@ -23,15 +25,16 @@ export default function RepoCollection() {
     const isFirstRender = useRef(true);
 
     useEffect(() => {
-        if(isFirstRender){
-            isFirstRender.current = false;
+        if(isFirstRender.current){
             return;
         } 
-        dispatch(fetchRepositories({q: searchQuery.q, currentPage}));
-    }, [currentPage, dispatch, searchQuery.q]);
+        dispatch(fetchRepositories({q: searchQuery, currentPage}));
+    }, [currentPage, dispatch, searchQuery]);
 
     useEffect(() => {
+        isFirstRender.current = true;
         if (RepositoriesResults.response === null) return;
+        isFirstRender.current = false;
         setDisplayRepo(RepositoriesResults.response?.items);
     }, [RepositoriesResults.response]);
 
@@ -183,7 +186,7 @@ export default function RepoCollection() {
     return (
         <div className="w-full relative">
             {!!(displayRepo.length > 0) && <div className="mb-4 text-xl opacity-70">Repositories results</div>}
-            {RepositoriesResults.loading === "pending" && Category.value ==="REPOSITORIES" && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
+            {RepositoriesResults.loading === "pending" && !!(displayRepo.length > 0) &&  <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
                 <div role="status">
                     <svg aria-hidden="true" className="w-12 h-1w-12 text-gray-200 animate-spin dark:text-gray-500 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />

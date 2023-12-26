@@ -10,6 +10,7 @@
 
 * {
   transition: all 150ms ease-in-out;
+  scroll-behavior: smooth;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,6 +29,10 @@ body, .bg-body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.no-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 

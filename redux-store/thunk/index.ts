@@ -1,4 +1,4 @@
-import { getRepositories, getTopics, getUsers } from "@/lib/TestOctokit";
+import { getRepositories, getTopics, getUsers } from "@/lib/Octokit";
 import { Params } from "@/lib/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 

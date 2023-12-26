@@ -7,7 +7,7 @@ type subCategories = keyof typeof Categories
 
 export default function CategoriesSection() {
     const contextData = useContext(SearchContext);
-    const chips:subCategories[] =["ALL", "REPOSITORIES", "USERS", "TOPICS"];
+    const chips: subCategories[] = ["ALL", "USERS", "REPOSITORIES", "TOPICS"];
 
     const openDropDown = contextData?.openDropDown;
 

@@ -1,5 +1,5 @@
 import { Octokit } from "octokit";
-import { Repository, SearchResponse, Topic, User } from "./Interfaces";
+import { GitHubUser, Repository, SearchResponse, Topic, User } from "./Interfaces";
 import { Params } from "./types";
 
 const authToken: string = process.env.NEXT_PUBLIC_GIT_AUTH_TOKEN!
@@ -40,3 +40,24 @@ export const getTopics = async (params:Params):Promise<SearchResponse<Topic>> =>
 
     return response.data
 } 
+
+export const getUser = async (params: string):Promise<[GitHubUser | undefined, boolean, number]> => {
+    let data:GitHubUser | undefined;
+    let error: boolean = false;
+    let status: number;
+
+    try {
+        const response = await octokit.rest.users.getByUsername({
+            username: params
+        });
+
+        const res = response.data;
+        status = response.status;
+        data = res;
+    } catch (error) {
+        status = 404;
+        error = true;
+    }
+    
+    return [data, error, status];
+}
