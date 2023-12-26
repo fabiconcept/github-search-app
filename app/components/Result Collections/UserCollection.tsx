@@ -64,7 +64,7 @@ export default function UserCollection() {
                     <>
                         {Array.from({ length: 4 }).map((_, index) => (
                             <div
-                                className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === index + 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                                className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === index + 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                     }`}
                                 key={index}
                                 onClick={() => handlePageClick(index + 1)}
@@ -76,7 +76,7 @@ export default function UserCollection() {
                             <FaEllipsisH />
                         </span>
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(totalPages)}
                         >
@@ -88,7 +88,7 @@ export default function UserCollection() {
                 return (
                     <>
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(1)}
                         >
@@ -99,7 +99,7 @@ export default function UserCollection() {
                         </span>
                         {Array.from({ length: 3 }).map((_, index) => (
                             <div
-                                className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages - 5 + index ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                                className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages - 5 + index ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                     }`}
                                 key={index}
                                 onClick={() => handlePageClick(totalPages - 5 + index)}
@@ -108,7 +108,7 @@ export default function UserCollection() {
                             </div>
                         ))}
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(totalPages)}
                         >
@@ -120,7 +120,7 @@ export default function UserCollection() {
                 return (
                     <>
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(1)}
                         >
@@ -131,7 +131,7 @@ export default function UserCollection() {
                         </span>
                         {Array.from({ length: 1 }).map((_, index) => (
                             <div
-                                className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage - 2 + index ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                                className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage - 2 + index ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                     }`}
                                 key={index}
                                 onClick={() => handlePageClick(currentPage - 1 + index)}
@@ -140,7 +140,7 @@ export default function UserCollection() {
                             </div>
                         ))}
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(currentPage)}
                         >
@@ -148,7 +148,7 @@ export default function UserCollection() {
                         </div>
                         {Array.from({ length: 1 }).map((_, index) => (
                             <div
-                                className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage + (index + 1) ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                                className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage + (index + 1) ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                     }`}
                                 key={index}
                                 onClick={() => handlePageClick(currentPage + (index + 1))}
@@ -160,7 +160,7 @@ export default function UserCollection() {
                             <FaEllipsisH />
                         </span>
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(totalPages)}
                         >
@@ -172,7 +172,7 @@ export default function UserCollection() {
         } else {
             return Array.from({ length: totalPages }).map((_, index) => (
                 <div
-                    className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === index + 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                    className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === index + 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                         }`}
                     key={index}
                     onClick={() => handlePageClick(index + 1)}
@@ -186,7 +186,7 @@ export default function UserCollection() {
 
     return (
         <div className="w-full relative">
-            {!!(displayUsers.length > 0) && <div className="mb-4 text-xl opacity-70">Users results</div>}
+            {!!(displayUsers.length > 0) && <div className="mb-4 sm:text-xl opacity-70">Users results</div>}
             {UsersResults.loading === "pending" && !!(displayUsers.length > 0) && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
                 <div role="status">
                     <svg aria-hidden="true" className="w-12 h-1w-12 text-gray-200 animate-spin dark:text-gray-500 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -196,7 +196,7 @@ export default function UserCollection() {
                     <span className="sr-only">Loading...</span>
                 </div>
             </div>}
-            {!!(displayUsers.length > 0) && <div className=" grid sm:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-[2rem_1rem] mx-auto place-items-center">
+            {!!(displayUsers.length > 0) && <div className="grid sm:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-4 mx-auto place-items-center">
                 {displayUsers.map((user) => (<UserCard
                     id={user.id}
                     avatar_img={user.avatar_url}
@@ -218,14 +218,14 @@ export default function UserCollection() {
                 <span>No user found</span>
             </div>}
 
-            {!!(displayUsers.length > 0) && UsersResults.response && UsersResults.response.total_count > 15 && <div className="flex items-center justify-center gap-1 mt-6 text-xs">
+            {!!(displayUsers.length > 0) && UsersResults.response && UsersResults.response.total_count > 15 && <div className="flex items-center justify-center gap-1 mt-6 sm:text-xs text-[0.65rem]">
                 <div className={`flex gap-1 items-center px-4 cursor-default ${currentPage === 1 ? "opacity-40" : "text-green-500 cursor-pointer active:scale-90 select-none"}`} onClick={prevHandler}>
                     <FaAngleLeft/>
-                    Previous
+                    <span className="sm:block hidden">Previous</span>
                 </div>
                 {renderPagination()}
                 <div className={`flex gap-1 items-center px-4 cursor-default ${currentPage === getPages(UsersResults.response.total_count) ? "opacity-40" : "text-green-500 cursor-pointer active:scale-90 select-none"}`} onClick={nextHandler}>
-                    Next
+                    <span className="sm:block hidden">Next</span>
                     <FaAngleRight />
                 </div>
             </div>}

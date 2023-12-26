@@ -85,7 +85,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                     <>
                         {Array.from({ length: 4 }).map((_, index) => (
                             <div
-                                className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === index + 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                                className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === index + 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                     }`}
                                 key={index}
                                 onClick={() => handlePageClick(index + 1)}
@@ -97,7 +97,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                             <FaEllipsisH />
                         </span>
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(totalPages)}
                         >
@@ -109,7 +109,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                 return (
                     <>
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(1)}
                         >
@@ -120,7 +120,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                         </span>
                         {Array.from({ length: 3 }).map((_, index) => (
                             <div
-                                className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages - 5 + index ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                                className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages - 5 + index ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                     }`}
                                 key={index}
                                 onClick={() => handlePageClick(totalPages - 5 + index)}
@@ -129,7 +129,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                             </div>
                         ))}
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(totalPages)}
                         >
@@ -141,7 +141,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                 return (
                     <>
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(1)}
                         >
@@ -152,7 +152,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                         </span>
                         {Array.from({ length: 1 }).map((_, index) => (
                             <div
-                                className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage - 2 + index ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                                className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage - 2 + index ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                     }`}
                                 key={index}
                                 onClick={() => handlePageClick(currentPage - 1 + index)}
@@ -161,7 +161,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                             </div>
                         ))}
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(currentPage)}
                         >
@@ -169,7 +169,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                         </div>
                         {Array.from({ length: 1 }).map((_, index) => (
                             <div
-                                className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage + (index + 1) ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                                className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === currentPage + (index + 1) ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                     }`}
                                 key={index}
                                 onClick={() => handlePageClick(currentPage + (index + 1))}
@@ -181,7 +181,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                             <FaEllipsisH />
                         </span>
                         <div
-                            className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                            className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === totalPages ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                                 }`}
                             onClick={() => handlePageClick(totalPages)}
                         >
@@ -193,7 +193,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
         } else {
             return Array.from({ length: totalPages }).map((_, index) => (
                 <div
-                    className={`text-xs px-4 py-2 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === index + 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
+                    className={`sm:text-xs text-[0.5rem] sm:px-4 px-2 sm:py-2 py-1 border hover:scale-105 active:scale-90 cursor-pointer ${currentPage === index + 1 ? "bg-green-500 dark:text-black text-white font-semibold border-transparent select-none" : "hover:bg-green-500/20"
                         }`}
                     key={index}
                     onClick={() => handlePageClick(index + 1)}
@@ -246,11 +246,11 @@ export default function RepoCollection({ url, login }: {url:string, login:string
             {!!(displayRepo.length > 0) && RepositoriesResultsCount > 10 && <div className="flex items-center justify-center gap-1 mt-6 text-xs">
                 <div className={`flex gap-1 items-center px-4 cursor-default ${currentPage === 1 ? "opacity-40" : "text-green-500 cursor-pointer active:scale-90 select-none"}`} onClick={prevHandler}>
                     <FaAngleLeft />
-                    Previous
+                    <span className="sm:block hidden">Previous</span>
                 </div>
                 {renderPagination()}
                 <div className={`flex gap-1 items-center px-4 cursor-default ${currentPage === ChunkRepo.length ? "opacity-40" : "text-green-500 cursor-pointer active:scale-90 select-none"}`} onClick={nextHandler}>
-                    Next
+                    <span className="sm:block hidden">Next</span>
                     <FaAngleRight />
                 </div>
             </div>}

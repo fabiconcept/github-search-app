@@ -23,7 +23,7 @@ export default function ResultsSection() {
 
 
     return (
-        <section className="p-6 flex flex-col gap-8 w-full">
+        <section className="sm:p-6 p-3 flex flex-col gap-8 w-full">
             {!isIdle && !NoResult && (Category.value === "ALL" || Category.value === "USERS") && <UserCollection />}
             {!isIdle && !NoResult && (Category.value === "ALL" || Category.value === "REPOSITORIES") &&<RepoCollection />}
             {!isIdle && !NoResult && (Category.value === "ALL" || Category.value === "TOPICS") &&<TopicCollection />}
