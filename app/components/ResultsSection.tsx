@@ -55,7 +55,7 @@ export default function ResultsSection() {
                     width={500}
                     className="min-w-[15rem] w-[30%] h-auto object-contain opacity-30"
                 />
-                <span>No Results</span>
+                <span>Opps...An Error Occured</span>
             </div>}
         </section>
     )
