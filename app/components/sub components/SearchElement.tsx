@@ -17,7 +17,8 @@ export default function SearchElement() {
     const isLoading = UsersResults.loading === "pending" || RepositoriesResults.loading === "pending" || TopicsResults.loading === "pending";
     const [searchQuery, setQearchQuery] = useState<string>("");
 
-    const performSearch = (): void => {
+    const performSearch = (e:React.FormEvent): void => {
+        e.preventDefault();
         if(searchQuery.length === 0) return;
         if (isLoading) return;
         switch(contextData?.category){
@@ -39,7 +40,7 @@ export default function SearchElement() {
     }
 
     return (
-        <div className="flex items-stretch gap-3 flex-1">
+        <form onSubmit={performSearch} className="flex items-stretch gap-3 flex-1">
             <input 
                 type="text"
                 placeholder={`Search ${(contextData?.category)?.toLowerCase()} github`} 
@@ -47,7 +48,7 @@ export default function SearchElement() {
                 onChange={(e)=>setQearchQuery(e.target.value)}
                 value={searchQuery}
             />
-            <div className={`${searchQuery.length > 0 ? "dark:hover:bg-white/10 hover:bg-black/10 cursor-pointer group" : "pointer-events-none"} border-l dark:border-white/10 border-black/10 grid place-items-center px-6 group-focus-within:border-black dark:group-focus-within:border-white`} onClick={performSearch}>
+            <button type="submit" className={`${searchQuery.length > 0 ? "dark:hover:bg-white/10 hover:bg-black/10 cursor-pointer group" : "pointer-events-none"} border-l dark:border-white/10 border-black/10 grid place-items-center px-6 group-focus-within:border-black dark:group-focus-within:border-white`}>
                 {!isLoading && <FaSearch className={`${searchQuery.length > 0 ? "peer-placeholder-shown:opacity-10 text-green-500 group-hover:scale-125 group-active:scale-90 group-active:rotate-[-45deg]" : "opacity-10 text-green-200"}`} />}
                 {isLoading && <div role="status">
                     <svg aria-hidden="true" className="sm:w-7 w-5 sm:h-7 h-5 text-gray-200 animate-spin dark:text-gray-500 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +57,7 @@ export default function SearchElement() {
                     </svg>
                     <span className="sr-only">Loading...</span>
                 </div>}
-            </div>
-        </div>
+            </button>
+        </form>
     )
 }
