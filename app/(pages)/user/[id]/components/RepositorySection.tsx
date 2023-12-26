@@ -206,8 +206,8 @@ export default function RepoCollection({ url, login }: {url:string, login:string
 
 
     return (
-        <div className="w-full relative h-full overflow-y-auto no-scroll">
-            {!!(displayRepo.length > 0) && <div className="mb-4 text-xl opacity-70">{login}&apos;s Repositories</div>}
+        <div className="min-w-[20rem] flex-1 relative sm:h-full overflow-y-auto no-scroll py-6">
+            {!!(displayRepo.length > 0) && <div className="mb-4 sm:text-xl text-lg sm:text-left text-center opacity-70">{login}&apos;s Repositories</div>}
             {loading === "pending" && !!(displayRepo.length > 0) && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
                 <div role="status">
                     <svg aria-hidden="true" className="w-12 h-1w-12 text-gray-200 animate-spin dark:text-gray-500 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -243,7 +243,7 @@ export default function RepoCollection({ url, login }: {url:string, login:string
                 <span>No repo found</span>
             </div>}
 
-            {!!(displayRepo.length > 0) && RepositoriesResultsCount > 15 && <div className="flex items-center justify-center gap-1 mt-6 text-xs">
+            {!!(displayRepo.length > 0) && RepositoriesResultsCount > 10 && <div className="flex items-center justify-center gap-1 mt-6 text-xs">
                 <div className={`flex gap-1 items-center px-4 cursor-default ${currentPage === 1 ? "opacity-40" : "text-green-500 cursor-pointer active:scale-90 select-none"}`} onClick={prevHandler}>
                     <FaAngleLeft />
                     Previous

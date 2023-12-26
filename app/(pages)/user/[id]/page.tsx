@@ -20,7 +20,7 @@ const [data, hasError, status] = await getUser(params?.id ?? "loco");
     }
 
     return (
-        <div className="max-w-screen p-3 h-screen flex items-center gap-3">
+        <div className="max-w-screen p-3 h-screen flex flex-wrap items-center gap-3">
             <ProfileSection 
                 followers={data.followers}
                 following={data.following}

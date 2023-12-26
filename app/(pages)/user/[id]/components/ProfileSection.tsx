@@ -18,7 +18,7 @@ interface ProfileProps {
 
 export default function ProfileSection(prop:ProfileProps) {
     return (
-        <section className="flex flex-col h-full rounded-lg bg-black/5 dark:bg-white/5 w-fit p-3 border border-black/5 dark:border-white/5 max-w-[20rem] relative">
+        <section className="flex flex-col sm:h-full rounded-lg bg-black/5 dark:bg-white/5 sm:w-fit w-full p-3 border border-black/5 dark:border-white/5 sm:max-w-[20rem] mx-w-full relative">
             <div className="flex items-center justify-between gap-6 text-xs min-w-[15rem] z-20">
                 <GoBack />
                 <span>@{prop.login}</span>
@@ -38,7 +38,7 @@ export default function ProfileSection(prop:ProfileProps) {
             <div className="absolute h-full w-full overflow-hidden rounded-lg top-0 left-0 backdrop-blur-lg z-10">
 
             </div>
-            <div className="flex-1 flex flex-col justify-center items-center gap-4 w-full z-20">
+            <div className="flex-1 flex flex-col justify-center items-center gap-4 mt-6 mb-3 w-full z-20">
                 <section className="flex flex-col items-center gap-4 w-full">
                     <div className="p-1 rounded-full border-2 border-black/50 dark:border-white/50 h-24 w-24">
                         <div className="bg-white rounded-full overflow-hidden w-full h-full gird place-items-center">
@@ -65,12 +65,12 @@ export default function ProfileSection(prop:ProfileProps) {
                             <span className="text-[0.65rem] opacity-50">Following</span>
                         </div>
                     </div>
-                    <div className="grid w-full">
+                    <div className="grid w-full sm:text-left text-center">
                         <span className="font-semibold text-green-500">{prop.name}</span>
                         <span className="text-xs opacity-50">{prop.company ? `${prop.company} - (company)` : prop.type}</span>
                     </div>
-                    <div className="grid w-full">
-                        <span className="text-xs line-clamp-5 max-w-[90%]">
+                    <div className="grid w-full sm:text-left text-center">
+                        <span className="text-xs line-clamp-5 sm:max-w-[90%]">
                             {prop.bio ? prop.bio : "No bio yet."}
                         </span>
                     </div>
