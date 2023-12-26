@@ -60,8 +60,8 @@ export default function FollowersSection({ url }: { url: string }) {
                 <FaAngleRight />
             </div>}
 
-            {!(followersCount > 0) && <div className='sm:w-12 sm:h-auto w-auto h-12 -mb-5'>
-                    <div className='whitespace-nowrap sm:-rotate-90'>
+            {!(followersCount > 0) && <div className='sm:w-12 sm:h-auto w-auto h-12 sm:block grid place-items-center sm:text-base text-sm'>
+                    <div className='whitespace-nowrap sm:-rotate-[90deg]'>
                         No followers yet
                     </div>
             </div>}

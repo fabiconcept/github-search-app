@@ -206,6 +206,7 @@ export default function RepoCollection() {
                         stargazers_count={repo.stargazers_count}
                         updated_at={repo.updated_at}
                         description={repo.description}
+                        repo_url={repo.html_url}
                     />
                 ))}
             </div>}

@@ -1,6 +1,8 @@
 import { formatLastUpdated, formatNumber, getLanguageColor } from "@/lib/helper";
 import Image from "next/image";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa6";
 
 interface RepositoryCard {
     avatar_url: string;
@@ -9,11 +11,12 @@ interface RepositoryCard {
     language: string;
     stargazers_count: number;
     updated_at: string;
+    repo_url: string
 }
 
 export default function RepoCard(params:RepositoryCard) {
     return (
-        <div className="sm:px-4 sm:py-4 px-4 py-2 w-full flex-1 bg-black/20 shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:bg-black/5 dark:hover:bg-white/5 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs flex gap-3 items-center">
+        <div className="sm:px-4 sm:py-4 px-4 py-2 w-full flex-1 bg-black/20 group shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:bg-black/5 dark:hover:bg-white/5 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs flex gap-3 items-center relative overflow-hidden">
             <div className="h-16 w-16 border dark:border-white/30 border-black/30 rounded-lg overflow-hidden">
                 <Image
                     src={params.avatar_url}
@@ -41,6 +44,9 @@ export default function RepoCard(params:RepositoryCard) {
                     </div>
                 </div>
             </div>
+            <Link href={params.repo_url} title="Open in github" target="_blank" className="group-hover:grid hidden absolute right-0 h-full bg-gradient-to-r from-transparent to-green-400/10 hover:to-green-400/30 hover:animate-none cursor-pointer place-items-center w-[6rem] animate-pulse">
+                <FaArrowRight className="sm:text-xl" />
+            </Link>
         </div>
     )
 }

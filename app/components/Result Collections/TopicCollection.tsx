@@ -201,6 +201,7 @@ export default function TopicCollection() {
                         name={topic.name}
                         short_description={topic.short_description || ""}
                         updated_at={topic.updated_at}
+                        topic_url={""}
                     />
                 ))}
             </div>}
