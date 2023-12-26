@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --background-rgb-fade: 255, 255, 255, 0.75;
 }
 
 * {
@@ -18,10 +19,11 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 15, 15, 15;
     --background-end-rgb: 15, 15, 15;
+    --background-rgb-fade: 15, 15, 15, 0.75;
   }
 }
 
-body, .bg-body {
+body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -29,6 +31,16 @@ body, .bg-body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+.bg-body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-rgb-fade))
+    )
+    rgb(var(--background-rgb-fade));
 }
 
 .no-scroll::-webkit-scrollbar {

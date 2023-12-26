@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function TopSection() {
     return (
-        <section className="p-12 sm:px-24 px-6 grid gap-6 border-b dark:border-white/10 border-black/10 topper">
+        <section className="p-12 sm:px-24 px-6 grid gap-6 border-b dark:border-white/10 border-black/10">
             <span className="uppercase font-semibold text-xs opacity-70">GitHub Repositories</span>
             <div className="flex items-center gap-1">
                 <Image

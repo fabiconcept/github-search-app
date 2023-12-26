@@ -24,9 +24,9 @@ export default function ResultsSection() {
 
     return (
         <section className="sm:p-6 p-3 flex flex-col gap-8 w-full">
-            {!isIdle && !NoResult && (Category.value === "ALL" || Category.value === "USERS") && <UserCollection />}
-            {!isIdle && !NoResult && (Category.value === "ALL" || Category.value === "REPOSITORIES") &&<RepoCollection />}
-            {!isIdle && !NoResult && (Category.value === "ALL" || Category.value === "TOPICS") &&<TopicCollection />}
+            {!isFailed && !isIdle && !NoResult && (Category.value === "ALL" || Category.value === "USERS") && <UserCollection />}
+            {!isFailed && !isIdle && !NoResult && (Category.value === "ALL" || Category.value === "REPOSITORIES") &&<RepoCollection />}
+            {!isFailed && !isIdle && !NoResult && (Category.value === "ALL" || Category.value === "TOPICS") &&<TopicCollection />}
             {isIdle && <div className="h-[30rem] grid place-items-center pointer-events-none select-none opacity-70">
                 <Image
                     src={"https://github-lobby.sirv.com/welcome.svg"}
