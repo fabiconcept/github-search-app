@@ -15,7 +15,7 @@ interface UserCardParams {
 
 export default function UserCard(params:UserCardParams) {
     return (
-        <Link href={`/user/${params.login}`} className="group p-2 min-w-[15rem] flex-1 sm:max-w-[15rem] max-w-[18rem] bg-white shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:bg-white/80 dark:hover:bg-white/5 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs">
+        <Link href={`/user/${params.login}`} className="group p-2 min-w-[15rem] flex-1 sm:max-w-[15rem] max-w-[18rem] bg-white shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:bg-white/50 dark:hover:bg-white/5 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs">
             <div className="overflow-hidden rounded-lg w-full aspect-auto grid place-items-center relative">
                 <Image
                     src={params.avatar_img}

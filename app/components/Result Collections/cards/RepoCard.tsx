@@ -29,7 +29,7 @@ export default function RepoCard(params:RepositoryCard) {
             </div>
             <div className="py-2 grid flex-1 gap-2 w-full">
                 <span className="font-semibold text-green-500 max-w-[90%] truncate">{params.full_name}</span>
-                <span className="w-[80%] truncate sm:text-sm text-xs">{params.description?? (<>&#8203;</>)}</span>
+                <span className="w-[80%] truncate sm:text-sm text-xs">{params.description ?? (<>&#8203;</>)}</span>
                 <div className="flex items-center gap-8 sm:text-[0.65rem] text-[0.55rem] dark:text-white/50 text-black/50">
                     {params.language && <div className="flex items-center gap-1 relative after:absolute after:h-[4px] after:w-[4px] dark:after:bg-white/30 after:bg-black/30 after:right-[-1.15rem] after:rounded-full">
                         <div className="h-3 w-3 border rounded-full" style={{backgroundColor:  `${getLanguageColor(params.language)}`}}></div>

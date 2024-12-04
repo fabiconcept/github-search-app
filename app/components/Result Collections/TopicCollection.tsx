@@ -182,7 +182,7 @@ export default function TopicCollection() {
         }
     };
     return (
-        <div className="w-full relative">
+        <div className="w-full relative sm:px-12">
             {!!(displayTopic.length > 0) && <div className="mb-4 text-xl opacity-70">Topics results</div>}
             {TopicsResults.loading === "pending" && !!(displayTopic.length > 0) &&  <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
                 <div role="status">
