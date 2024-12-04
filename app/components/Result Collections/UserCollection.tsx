@@ -185,7 +185,7 @@ export default function UserCollection() {
 
 
     return (
-        <div className="w-full relative">
+        <div className="w-full relative sm:px-14">
             {!!(displayUsers.length > 0) && <div className="mb-4 sm:text-xl opacity-70">Users results</div>}
             {UsersResults.loading === "pending" && !!(displayUsers.length > 0) && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
                 <div role="status">
@@ -196,7 +196,7 @@ export default function UserCollection() {
                     <span className="sr-only">Loading...</span>
                 </div>
             </div>}
-            {!!(displayUsers.length > 0) && <div className="grid sm:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-4 mx-auto place-items-center">
+            {!!(displayUsers.length > 0) && <div className="grid sm:grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-4 mx-auto max-sm:place-items-center">
                 {displayUsers.map((user) => (<UserCard
                     id={user.id}
                     avatar_img={user.avatar_url}
