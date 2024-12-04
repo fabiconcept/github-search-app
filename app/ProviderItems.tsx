@@ -7,8 +7,10 @@ import SearchSection from "./components/SearchSection";
 export default function ProviderItems() {
     return (
         <ProviderComponent>
-            <SearchSection />
-            <ResultsSection />
+            <div className=" flex-1 flex flex-col bg-black/5">
+                <SearchSection />
+                <ResultsSection />
+            </div>
         </ProviderComponent>
     )
 }

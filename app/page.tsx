@@ -3,7 +3,7 @@ import ProviderItems from "./ProviderItems";
 
 export default function page() {
     return (
-        <div className="relative">
+        <div className="relative flex flex-col min-h-screen">
             <TopSection />
             <ProviderItems />
         </div>
