@@ -14,7 +14,7 @@ export default function TopSection() {
                 />
                 <h2 className="sm:text-4xl text-2xl font-semibold text-green-500">GitHub Explorer</h2>
             </div>
-            <div className="text-xs opacity-70 sm:max-w-2xl max-w-[80%]">Explore GitHub&apos;s vast collection of repositories, discover talented users, and find solutions to your coding challenges. Search across projects, users, issues, and more to uncover the perfect assets for your next project.</div>
+            <div className="sm:text-base text-sm opacity-70 sm:max-w-2xl max-w-[80%]">Explore GitHub&apos;s vast collection of repositories, discover talented users, and find solutions to your coding challenges. Search across projects, users, issues, and more to uncover the perfect assets for your next project.</div>
         </section>
     )
 }
