@@ -186,7 +186,7 @@ export default function UserCollection() {
 
     return (
         <div className="w-full relative sm:px-14">
-            {!!(displayUsers.length > 0) && <div className="mb-4 sm:text-xl opacity-70">Users results</div>}
+            {!!(displayUsers.length > 0) && <div className="mb-4 sm:text-xl opacity-70">Users results:</div>}
             {UsersResults.loading === "pending" && !!(displayUsers.length > 0) && <div className="absolute top-0 left-0 h-full w-full z-10 bg-white/5 backdrop-blur-md grid place-items-center">
                 <div role="status">
                     <svg aria-hidden="true" className="w-12 h-1w-12 text-gray-200 animate-spin dark:text-gray-500 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
