@@ -23,19 +23,18 @@ export default function ResultsSection() {
 
 
     return (
-        <section className="sm:p-6 p-3 flex flex-col gap-8 w-full">
+        <section className="sm:p-6 p-3 flex flex-col gap-8 w-full flex-1">
             {!isFailed && !isIdle && !NoResult && (Category.value === "ALL" || Category.value === "USERS") && <UserCollection />}
             {!isFailed && !isIdle && !NoResult && (Category.value === "ALL" || Category.value === "REPOSITORIES") &&<RepoCollection />}
             {!isFailed && !isIdle && !NoResult && (Category.value === "ALL" || Category.value === "TOPICS") &&<TopicCollection />}
-            {isIdle && <div className="h-[30rem] grid place-items-center pointer-events-none select-none opacity-70">
+            {isIdle && <div className="h-full min-h-[20rem] flex flex-col items-center justify-center pointer-events-none select-none opacity-70">
                 <Image
                     src={"https://github-lobby.sirv.com/welcome.svg"}
                     alt="Welcome svg"
                     height={300}
                     width={500}
-                    className="min-w-[15rem] w-[30%] h-auto object-contain opacity-30"
+                    className="w-[clamp(10rem,30%,25rem)] h-auto object-contain opacity-100 "
                 />
-                <span>Welcome</span>
             </div>}
             {NoResult && <div className="h-[30rem] grid place-items-center pointer-events-none select-none opacity-70">
                 <Image
