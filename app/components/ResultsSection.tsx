@@ -33,26 +33,26 @@ export default function ResultsSection() {
                     alt="Welcome svg"
                     height={300}
                     width={500}
-                    className="w-[clamp(10rem,30%,25rem)] h-auto object-contain opacity-100 "
+                    className="w-[clamp(10rem,30%,25rem)] h-auto object-contain dark:opacity-30"
                 />
             </div>}
-            {NoResult && <div className="h-[30rem] grid place-items-center pointer-events-none select-none opacity-70">
+            {NoResult && <div className="h-full min-h-[20rem] grid place-items-center pointer-events-none select-none opacity-70">
                 <Image
                     src={"https://github-lobby.sirv.com/noresult.svg"}
                     alt="Welcome svg"
                     height={300}
                     width={500}
-                    className="min-w-[15rem] w-[30%] h-auto object-contain opacity-30"
+                    className="w-[clamp(10rem,30%,25rem)] h-auto object-contain dark:opacity-30"
                 />
                 <span>No Results</span>
             </div>}
-            {isFailed && <div className="h-[30rem] grid place-items-center pointer-events-none select-none opacity-70">
+            {isFailed && <div className="h-full min-h-[20rem] grid place-items-center pointer-events-none select-none opacity-70">
                 <Image
                     src={"https://github-lobby.sirv.com/error.svg"}
                     alt="Welcome svg"
                     height={300}
                     width={500}
-                    className="min-w-[15rem] w-[30%] h-auto object-contain opacity-30"
+                    className="w-[clamp(10rem,30%,25rem)] h-auto object-contain dark:opacity-30"
                 />
                 <span>Opps...An Error Occured</span>
             </div>}
