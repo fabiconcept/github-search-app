@@ -12,7 +12,7 @@ interface TopicCard {
 
 export default function TopicCard(params:TopicCard) {
     return (
-        <div className="p-4 w-full flex-1 bg-white shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:bg-white/50 dark:hover:bg-white/5 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs flex gap-3 items-center relative">
+        <div className="p-4 w-full flex-1 bg-white dark:bg-black/20 shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:bg-white/50 dark:hover:bg-white/5 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs flex gap-3 items-center relative">
             <div className="py-2 grid flex-1 gap-2">
                 <span className="font-semibold text-green-500">{params.name}</span>
                 <span className="line-clamp-2">{!!params.short_description ? params.short_description : (<>&#8203;</>)}</span>

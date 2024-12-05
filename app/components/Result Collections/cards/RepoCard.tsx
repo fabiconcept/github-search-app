@@ -16,7 +16,7 @@ interface RepositoryCard {
 
 export default function RepoCard(params:RepositoryCard) {
     return (
-        <Link href={params.repo_url} title="Open in github" target="_blank"  className="sm:px-4 sm:py-4 hover:-translate-y-1 px-4 py-2 w-full flex-1 bg-white group shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:bg-white/50 cursor-pointer group dark:hover:bg-white/5 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs flex gap-3 items-center relative overflow-hidden">
+        <Link href={params.repo_url} title="Open in github" target="_blank"  className="sm:px-4 sm:py-4 hover:-translate-y-1 px-4 py-2 w-full flex-1 bg-white dark:bg-black/20 group shadow-lg border border-black/10 dark:border-white/10 hover:border-green-700/50 hover:bg-white/50 cursor-pointer group dark:hover:bg-white/5 active:scale-95 hover:shadow-green-600/10 rounded-lg text-xs flex gap-3 items-center relative overflow-hidden">
             <div className="h-16 w-16 border dark:border-white/30 border-black/30 rounded-lg overflow-hidden">
                 <Image
                     src={params.avatar_url}
